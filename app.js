@@ -29,7 +29,7 @@ $(".play").click(function () {
 
 $(document).ready(function(){
     // alert("ram");
-    myVar = setInterval("calculate()", 1);
+    myVar = setInterval("calculate()", 1000/60);
 });
 
 function calculate(){
@@ -40,8 +40,11 @@ function calculate(){
         g=document.getElementById("grr").value; 
         e=document.getElementById("cor").value; 
         d=document.getElementById("add").value;
-        console.log(g);
+        // console.log("v="+v);
+        // if(v<10.0&&v>-10){
+        // console.log(450-(j-100)-100);}
         gg=parseFloat(g);
+        gg=gg*1;
         ee=parseFloat(e);
         dd=parseFloat(d);
         if(j>=end){
@@ -65,7 +68,7 @@ function calculate(){
         
 
         y=j;
-        console.log(y);
+        // console.log(y);
         $(".ball").css("top",y+"px");
 
     }
