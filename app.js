@@ -3,7 +3,6 @@ var g, e, d;
 var z = 0;
 var end = 446;
 var gg, ee, dd;
-
 $(".restart").click(function () {
     z = 0;
     y = 100;
@@ -12,48 +11,38 @@ $(".restart").click(function () {
     $("#cor").attr("value", "0.8");
     $("#add").attr("value", "0.0");
     $(".ball").css("top", y);
+    cancelAnimationFrame(req);
 });
-
 $(".pause").click(function () {
-    z = 0;
+    cancelAnimationFrame(req);
 });
-
 $(".play").click(function () {
-    z = 1;
+    requestAnimationFrame(calculate);
 });
-
-$(document).ready(function () {
-    myVar = setInterval("calculate()", 1);
-});
-
 function calculate() {
-
-    if (z == 1) {
-        var j = y;
-        g = document.getElementById("grr").value;
-        e = document.getElementById("cor").value;
-        d = document.getElementById("add").value;
-        gg = parseFloat(g);
-        ee = parseFloat(e);
-        dd = parseFloat(d);
-        gg = gg * 1;
-        if (j >= end) {
-            v = e * (-v);
-            j = end - (j - end);
-        }
-        if (v >= 0) {
-            v += gg;
-            v -= v * v * dd * 0.000001;
-        }
-        else {
-            v += gg;
-            v += v * v * dd * 0.000001;
-        }
-        j = j + v * 0.005;
-        y = j;
-        if (j <= end)
-            $(".ball").css("top", y + "px");
-        else
-            $(".ball").css("top", end + "px");
+    var j = y;
+    g = document.getElementById("grr").value;
+    e = document.getElementById("cor").value;
+    d = document.getElementById("add").value;
+    gg = parseFloat(g)*1;
+    ee = parseFloat(e);
+    dd = parseFloat(d);
+    var vv=v;
+    v += gg*0.1;
+    if (v >= 0) {
+        v -= v * v * dd * 0.0001;
     }
+    else {
+        v += v * v * dd * 0.0001;
+    }
+    if(y+v>=end){
+        v=-v*ee;
+        $(".ball").css("top", end + "px");
+        
+    }
+    else{
+        y+=v;
+        $(".ball").css("top", y + "px");
+    }
+    req = requestAnimationFrame(calculate);
 }
